@@ -15,6 +15,10 @@ request.get("https://api.thecatapi.com/v1/breeds/search?q=" + breedSearchTerm, (
   if (!results.length) {
     console.log("Error: Breed not found.");
   } else {
-    console.log(results);
-  }    
-})
+    console.log("Breed search results:");
+    results.forEach(element => {
+      console.log(`${element.name}: ${element.description}`);
+      console.log(`******************************`);
+    });
+  }
+});
