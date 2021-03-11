@@ -2,19 +2,19 @@ const request = require('request');
 
 const fetchBreedDescription = (searchTerm, callback) => {
   if (!searchTerm) {
-    console.log("No search term given. Try again!");
+    callback("No search term given. Try again!", null);
     return;
   }
-  
-  request.get("https://api.thecatapi.com/v1/breeds/search?q=" + searchTerm, (err, response, body) => {
+  request.get("https://api.thecatapis.com/v1/breeds/search?q=" + searchTerm, (err, response, body) => {
     if (err) {
       callback(err, null);
-    }
-    const results = JSON.parse(body);
-    if (!results.length) {
-      callback("Error: Breed not found.", null);
     } else {
-      callback(null, results);
+      const results = JSON.parse(body);
+      if (!results.length) {
+        callback("Error: No results for that search term.", null);
+      } else {
+        callback(null, results);
+      }
     }
   });
 }
