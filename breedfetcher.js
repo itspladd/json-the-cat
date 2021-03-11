@@ -7,11 +7,14 @@ if (!breedSearchTerm) {
 }
 
 request.get("https://api.thecatapi.com/v1/breeds/search?q=" + breedSearchTerm, (err, response, body) => {
-  console.log(err);
-  //console.log(response);
-  if (body = "[]") {
+  if (err) {
+    console.log(err);
+    return;
+  }
+  const results = JSON.parse(body);
+  if (!results.length) {
     console.log("Error: Breed not found.");
   } else {
-    const results = JSON.parse(body);
+    console.log(results);
   }    
 })
