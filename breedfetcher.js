@@ -1,5 +1,4 @@
 const request = require('request');
-const breedSearchTerm = process.argv[2];
 
 const fetchBreedDescription = (searchTerm, callback) => {
   if (!searchTerm) {
@@ -9,21 +8,15 @@ const fetchBreedDescription = (searchTerm, callback) => {
   
   request.get("https://api.thecatapi.com/v1/breeds/search?q=" + searchTerm, (err, response, body) => {
     if (err) {
-      console.log(err);
-      return;
+      callback(err, null);
     }
     const results = JSON.parse(body);
     if (!results.length) {
-      console.log("Error: Breed not found.");
+      callback("Error: Breed not found.", null);
     } else {
-      console.log("Breed search results:");
-      results.forEach(element => {
-        console.log(`${element.name}: ${element.description}`);
-        console.log(`******************************`);
-      });
+      callback(null, results);
     }
   });
 }
-console.log("import/export worked")
 
 module.exports = fetchBreedDescription;
