@@ -24,6 +24,4 @@ describe('#fetchBreedDescription', () => {
       done();
     });
   });
-  it(`should...`);
-  it(`should...`);
 });
