@@ -5,7 +5,7 @@ const fetchBreedDescription = (searchTerm, callback) => {
     callback("No search term given. Try again!", null);
     return;
   }
-  request.get("https://api.thecatapis.com/v1/breeds/search?q=" + searchTerm, (err, response, body) => {
+  request.get("https://api.thecatapi.com/v1/breeds/search?q=" + searchTerm, (err, response, body) => {
     if (err) {
       callback(err, null);
     } else {
@@ -17,6 +17,6 @@ const fetchBreedDescription = (searchTerm, callback) => {
       }
     }
   });
-}
+};
 
 module.exports = fetchBreedDescription;
