@@ -2,7 +2,7 @@ const fetchBreedDescription = require('./breedfetcher');
 const breedSearchTerm = process.argv[2];
 
 fetchBreedDescription(breedSearchTerm, (err, results) => {
-  if(err) {
+  if (err) {
     console.log(err);
   } else {
     results.forEach(element => {
